@@ -2,45 +2,48 @@
   <div>
     <el-container class="home-container">
       <el-header class="home-header">
-        <span class="home_title">我的平台</span>
+        <span class="home_title">后台管理平台</span>
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="1">处理中心</el-menu-item>
+          <el-submenu index="2">
+            <template slot="title">我的工作台</template>
+            <el-menu-item index="2-1">选项1</el-menu-item>
+            <el-menu-item index="2-2">选项2</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-submenu index="2-4">
+              <template slot="title">选项4</template>
+              <el-menu-item index="2-4-1">选项1</el-menu-item>
+              <el-menu-item index="2-4-2">选项2</el-menu-item>
+              <el-menu-item index="2-4-3">选项3</el-menu-item>
+            </el-submenu>
+          </el-submenu>
+          <el-menu-item index="3" disabled>消息中心</el-menu-item>
+          <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+        </el-menu>
+        <div class="line"></div>
       </el-header>
       <el-container>
         <el-aside width="180px" class="home-aside">
           <div style="width: 180px;text-align: left;">
-            <el-menu style="background: #545c64;width: 180px;" unique-opened>
-                <el-menu-item index="1" @click="goTodayFundJson">
+            <el-menu style="width: 180px;" unique-opened>
+                <el-menu-item index="1" @click="goUserList">
                   <i class="el-icon-menu"></i>
-                  <span slot="title">今日配置</span>
+                  <span slot="title">用户列表</span>
                 </el-menu-item>
-                <el-menu-item index="2" @click="goFundList">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">基金列表</span>
-                </el-menu-item>
-                <el-menu-item index="3" @click="goindexInfo">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">指数信息</span>
-                </el-menu-item>
-              <el-menu-item index="4" @click="goChartLine">
-                <i class="el-icon-menu"></i>
-                <span slot="title">收益折线图</span>
-              </el-menu-item>
-                <el-menu-item index="5">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">监控预警</span>
-                </el-menu-item>
+
             </el-menu>
           </div>
         </el-aside>
-          <el-main>
-            <el-breadcrumb separator-class="el-icon-arrow-right">
-              <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-              <el-breadcrumb-item v-text="this.$router.currentRoute.name"></el-breadcrumb-item>
-            </el-breadcrumb>
-            <keep-alive>
-              <router-view v-if="this.$route.meta.keepAlive"></router-view>
-            </keep-alive>
-            <router-view v-if="!this.$route.meta.keepAlive"></router-view>
-          </el-main>
+        <el-main>
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item v-text="this.$router.currentRoute.name"></el-breadcrumb-item>
+          </el-breadcrumb>
+          <keep-alive>
+            <router-view v-if="this.$route.meta.keepAlive"></router-view>
+          </keep-alive>
+          <router-view v-if="!this.$route.meta.keepAlive"></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -50,21 +53,12 @@
   export default {
     data() {
       return {
-        
+
       }
     },
     methods:{
-      goFundList(){
-        this.$router.push({path: '/fundlist'});
-      },
-      goTodayFundJson(){
-        this.$router.push({path: '/todayFundJson'});
-      },
-      goindexInfo(){
-        this.$router.push({path: '/indexInfo'});
-      },
-      goChartLine(){
-        this.$router.push({path: '/ChartLine'});
+      goUserList(){
+        this.$router.push({path: '/userlist'});
       }
     }
   }
@@ -80,8 +74,8 @@
   }
 
   .home-header {
-    background-color: #545c64;
-    color: #fff;
+    /*background-color: #545c64;*/
+    /*color: #fff;*/
     text-align: center;
     display: flex;
     align-items: center;
@@ -91,30 +85,30 @@
   }
 
   .home-aside {
-    background-color: #545c64;
+    /*background-color: #545c64;*/
   }
 
   .el-submenu__title{
-    color: #000;
+    color: #fff;
   }
 
   .home-main {
-    background-color: #fff;
-    color: #000;
+    background-color: #000;
+    color: #fff;
     text-align: center;
     margin: 0px;
     padding: 0px;;
   }
 
   .home_title {
-    color: #fff;
+    color: #000;
     font-size: 22px;
     display: inline;
     margin-left: 8px;
   }
 
   .home_userinfo {
-    color: #fff;
+    color: #000;
     cursor: pointer;
   }
 
