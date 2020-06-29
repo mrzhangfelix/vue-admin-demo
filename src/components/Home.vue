@@ -30,6 +30,14 @@
                   <i class="el-icon-menu"></i>
                   <span slot="title">用户列表</span>
                 </el-menu-item>
+              <el-menu-item index="2" @click="goRoomList">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">房间列表</span>
+                </el-menu-item>
+              <el-menu-item index="3" @click="goSwiperList">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">swiper列表</span>
+                </el-menu-item>
 
             </el-menu>
           </div>
@@ -59,6 +67,12 @@
     methods:{
       goUserList(){
         this.$router.push({path: '/userlist'});
+      },
+      goRoomList(){
+        this.$router.push({path: '/roomlist'});
+      },
+      goSwiperList(){
+        this.$router.push({path: '/swiperlist'});
       }
     }
   }

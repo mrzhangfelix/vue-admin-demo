@@ -14,10 +14,10 @@
                 size="mini"
                 style="width: 100%">
             <el-table-column
-                    prop="userId"
+                    prop="id"
                     sortable
-                    width="200"
-                    label="用户id">
+                    width="60"
+                    label="id">
             </el-table-column>
             <el-table-column
                     prop="username"
@@ -32,10 +32,70 @@
                     label="密码">
             </el-table-column>
             <el-table-column
-                    prop="status"
+                    prop="type"
+                    sortable
+                    width="100"
+                    label="用户类型">
+            </el-table-column>
+            <el-table-column
+                    prop="lastLoginTime"
                     sortable
                     width="200"
-                    label="状态:NORMAL正常  PROHIBIT禁用">
+                    label="上次登陆时间">
+            </el-table-column>
+            <el-table-column
+                    prop="balance"
+                    sortable
+                    width="100"
+                    label="用户余额">
+            </el-table-column>
+            <el-table-column
+                    prop="image"
+                    sortable
+                    width="200"
+                    label="用户头像">
+            </el-table-column>
+            <el-table-column
+                    prop="inviter"
+                    sortable
+                    width="100"
+                    label="邀请人">
+            </el-table-column>
+            <el-table-column
+                    prop="inviteNum"
+                    sortable
+                    width="120"
+                    label="总共邀请人数">
+            </el-table-column>
+            <el-table-column
+                    prop="revenue"
+                    sortable
+                    width="100"
+                    label="累计收入">
+            </el-table-column>
+            <el-table-column
+                    prop="clockNum"
+                    sortable
+                    width="100"
+                    label="累计打卡">
+            </el-table-column>
+            <el-table-column
+                    prop="weixinId"
+                    sortable
+                    width="200"
+                    label="用户绑定微信">
+            </el-table-column>
+            <el-table-column
+                    prop="resurrection"
+                    sortable
+                    width="120"
+                    label="复活卡数量">
+            </el-table-column>
+            <el-table-column
+                    prop="joinRoom"
+                    sortable
+                    width="200"
+                    label="加入的房间">
             </el-table-column>
 
         </el-table>

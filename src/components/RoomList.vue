@@ -2,13 +2,13 @@
     <div style="display: inline;padding-top: 22px;">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item>
-                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getuserdata">刷新
+                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getroomdata">刷新
                     </el-button>
             </el-form-item>
 
         </el-form>
         <el-table
-                :data="userdata.data"
+                :data="roomdata.data"
                 v-loading="tableLoading"
                 border
                 size="mini"
@@ -17,79 +17,103 @@
                     prop="id"
                     sortable
                     width="200"
-                    label="用户id">
+                    label="房间id">
             </el-table-column>
             <el-table-column
-                    prop="username"
+                    prop="name"
                     sortable
                     width="200"
-                    label="用户名">
+                    label="房间名称">
             </el-table-column>
             <el-table-column
-                    prop="phone"
+                    prop="dakaTime"
                     sortable
                     width="200"
-                    label="phone">
+                    label="打卡时间">
             </el-table-column>
             <el-table-column
-                    prop="lastLoginTime"
+                    prop="money"
                     sortable
                     width="200"
-                    label="lastLoginTime">
-            </el-table-column>
-            <el-table-column
-                    prop="balance"
-                    sortable
-                    width="200"
-                    label="balance">
+                    label="房间奖金">
             </el-table-column>
             <el-table-column
                     prop="image"
                     sortable
                     width="200"
-                    label="image">
+                    label="房间图片">
+            </el-table-column>
+            <el-table-column
+                    prop="userId"
+                    sortable
+                    width="200"
+                    label="创建人id">
+            </el-table-column>
+            <el-table-column
+                    prop="bonus"
+                    sortable
+                    width="200"
+                    label="分红比例">
+            </el-table-column>
+            <el-table-column
+                    prop="start_day"
+                    sortable
+                    width="200"
+                    label="起始日期">
+            </el-table-column>
+            <el-table-column
+                    prop="avtiveDays"
+                    sortable
+                    width="200"
+                    label="持续几天">
+            </el-table-column>
+            <el-table-column
+                    prop="clockDays"
+                    sortable
+                    width="200"
+                    label="已经打卡了几天">
+            </el-table-column>
+            <el-table-column
+                    prop="recommend"
+                    sortable
+                    width="200"
+                    label="是否推荐">
+            </el-table-column>
+            <el-table-column
+                    prop="creatTime"
+                    sortable
+                    width="200"
+                    label="创建时间">
+            </el-table-column>
+            <el-table-column
+                    prop="finish"
+                    sortable
+                    width="200"
+                    label="是否结束">
+            </el-table-column>
+            <el-table-column
+                    prop="showinfo"
+                    sortable
+                    width="200"
+                    label="是否推荐">
+            </el-table-column>
+            <el-table-column
+                    prop="showinfo"
+                    sortable
+                    width="200"
+                    label="展示的数据">
             </el-table-column>
             <el-table-column
                     prop="type"
                     sortable
                     width="200"
-                    label="type">
+                    label="0:平均分配 其它:限制打卡金额">
             </el-table-column>
             <el-table-column
-                    prop="inviter"
+                    prop="imageUrl"
                     sortable
                     width="200"
-                    label="inviter">
-            </el-table-column>
-            <el-table-column
-                    prop="reward"
-                    sortable
-                    width="200"
-                    label="reward">
-            </el-table-column>
-            <el-table-column
-                    prop="inviteNum"
-                    sortable
-                    width="200"
-                    label="inviteNum">
-            </el-table-column>
-            <el-table-column
-                    prop="clockNum"
-                    sortable
-                    width="200"
-                    label="clockNum">
-            </el-table-column>
-            <el-table-column
-                    prop="join_room"
-                    sortable
-                    width="200"
-                    label="join_room">
-            </el-table-column>
-            <el-table-column
-                    prop="weixin_id"
-                    sortable
-                    width="200"
-                    label="weixin_id">
+                    label="房间图片">
             </el-table-column>
 
         </el-table>
@@ -101,25 +125,25 @@
     export default {
         data: function() {
             return {
-                userdata:{
+                roomdata:{
 
                 }
             }
         },
         methods: {
-            getuserdata(){
+            getroomdata(){
                 this.tableLoading = true;
-                this.getRequest("/user/selectAll").then(resp=> {
+                this.getRequest("/room/selectAll").then(resp=> {
                     this.tableLoading = false;
                     if (resp && resp.status == 200) {
                         var data = resp.data;
-                        this.userdata = resp.data
+                        this.roomdata = resp.data
                         }
                 })
             }
         },
         created: function(){
-            this.getuserdata()
+            this.getroomdata()
         },
         destroyed: function(){
 
