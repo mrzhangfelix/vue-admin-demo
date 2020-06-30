@@ -97,12 +97,23 @@
                     width="200"
                     label="加入的房间">
             </el-table-column>
+          <el-table-column
+            fixed="right"
+            label="操作"
+            width="100">
+            <template slot-scope="scope">
+              <el-button type="text" size="small">查看</el-button>
+              <el-button @click="resetPassWord(scope.row.id)" type="text" size="small">重置密码</el-button>
+            </template>
+          </el-table-column>
 
         </el-table>
     </div>
 </template>
 
     <script>
+    import {Message} from "element-ui";
+
     const path = require('path')
     export default {
         data: function() {
@@ -122,6 +133,14 @@
                         this.userdata = resp.data
                         }
                 })
+            },
+            resetPassWord(id){
+              console.log(id)
+              this.getRequest("/user/resetPassWord?id="+id).then(resp=> {
+                if (resp && resp.status == 200) {
+                  Message.success({message: "成功"});
+                }
+              })
             }
         },
         created: function(){
