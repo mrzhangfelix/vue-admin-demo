@@ -1,4 +1,4 @@
-# finance-frontend
+# vueAdmin
 
 > A Vue.js project
 
