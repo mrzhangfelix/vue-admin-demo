@@ -21,6 +21,18 @@
                   <i class="el-icon-menu"></i>
                   <span slot="title">swiper列表</span>
                 </el-menu-item>
+              <el-menu-item index="4" @click="goBillList">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">Bill列表</span>
+                </el-menu-item>
+              <el-menu-item index="5" @click="goClockList">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">Clock列表</span>
+                </el-menu-item>
+              <el-menu-item index="6" @click="goLogList">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">Log列表</span>
+                </el-menu-item>
 
             </el-menu>
           </div>
@@ -56,6 +68,15 @@
       },
       goSwiperList(){
         this.$router.push({path: '/swiperlist'});
+      },
+      goBillList(){
+        this.$router.push({path: '/billlist'});
+      },
+      goClockList(){
+        this.$router.push({path: '/clocklist'});
+      },
+      goLogList(){
+        this.$router.push({path: '/loglist'});
       }
     }
   }

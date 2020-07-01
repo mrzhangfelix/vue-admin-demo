@@ -41,6 +41,7 @@ axios.interceptors.response.use(
       Message.error({message: '权限不足,请联系管理员!'});
     } else if (err.response.status == 401) {
       Message.error({message: '401:未授权' + err.response.data.message});
+      this.$router.push({path: '/'});
     } else {
       if (err.response.data.msg) {
         Message.error({message: err.response.data.message});

@@ -25,12 +25,12 @@
                     width="200"
                     label="用户名">
             </el-table-column>
-            <el-table-column
-                    prop="password"
-                    sortable
-                    width="200"
-                    label="密码">
-            </el-table-column>
+<!--            <el-table-column-->
+<!--                    prop="password"-->
+<!--                    sortable-->
+<!--                    width="200"-->
+<!--                    label="密码">-->
+<!--            </el-table-column>-->
             <el-table-column
                     prop="type"
                     sortable
@@ -49,12 +49,12 @@
                     width="100"
                     label="用户余额">
             </el-table-column>
-            <el-table-column
-                    prop="image"
-                    sortable
-                    width="200"
-                    label="用户头像">
-            </el-table-column>
+<!--            <el-table-column-->
+<!--                    prop="image"-->
+<!--                    sortable-->
+<!--                    width="200"-->
+<!--                    label="用户头像">-->
+<!--            </el-table-column>-->
             <el-table-column
                     prop="inviter"
                     sortable

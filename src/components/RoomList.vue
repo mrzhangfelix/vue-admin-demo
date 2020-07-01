@@ -115,12 +115,22 @@
                     width="200"
                     label="房间图片">
             </el-table-column>
-
+          <el-table-column
+            fixed="right"
+            label="操作"
+            width="100">
+            <template slot-scope="scope">
+              <el-button @click="topping(scope.row.id)" type="text" size="small">推荐</el-button>
+              <el-button @click="recommend(scope.row.id)" type="text" size="small">顶置</el-button>
+            </template>
+          </el-table-column>
         </el-table>
     </div>
 </template>
 
     <script>
+    import {Message} from "element-ui";
+
     const path = require('path')
     export default {
         data: function() {
@@ -140,7 +150,23 @@
                         this.roomdata = resp.data
                         }
                 })
-            }
+            },
+          topping(id){
+            console.log(id)
+            this.getRequest("/room/topping?id="+id).then(resp=> {
+              if (resp && resp.status == 200) {
+                Message.success({message: "成功"});
+              }
+            })
+          },
+          recommend(id){
+            console.log(id)
+            this.getRequest("/room/recommend?id="+id).then(resp=> {
+              if (resp && resp.status == 200) {
+                Message.success({message: "成功"});
+              }
+            })
+          }
         },
         created: function(){
             this.getroomdata()

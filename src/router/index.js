@@ -5,6 +5,9 @@ import Login from '@/components/Login'
 import UserList from '@/components/UserList'
 import SwiperList from '@/components/SwiperList'
 import RoomList from '@/components/RoomList'
+import BillList from '@/components/BillList'
+import ClockList from '@/components/ClockList'
+import LogList from '@/components/LogList'
 Vue.use(Router)
 
 export default new Router({
@@ -26,6 +29,18 @@ export default new Router({
           path: '/roomlist',
           name: '房间列表',
           component: RoomList
+        },{
+          path: '/billlist',
+          name: '交易列表',
+          component: BillList
+        },{
+          path: '/clocklist',
+          name: '打卡列表',
+          component: ClockList
+        },{
+          path: '/loglist',
+          name: '日志列表',
+          component: LogList
         }
       ]
     },{
