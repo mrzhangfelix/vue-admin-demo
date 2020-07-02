@@ -12,18 +12,9 @@ import {putRequest} from './utils/api'
 import {isNotNullORBlank} from './utils/utils'
 import './utils/filter_utils'
 import 'font-awesome/css/font-awesome.min.css'
-import VCharts from 'v-charts'
-
-import showdown from 'showdown'
-
-import VueHighlightJS from 'vue-highlightjs'
-import 'highlight.js/styles/atom-one-dark.css'
-Vue.use(VueHighlightJS)
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-Vue.use(VCharts)
-Vue.use(showdown)
 
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest = postRequest;
