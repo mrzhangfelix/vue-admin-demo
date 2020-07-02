@@ -2,13 +2,22 @@
     <div style="display: inline;padding-top: 22px;">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item>
-                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getlogdata">刷新
+                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getlogdata(1)">刷新
                     </el-button>
             </el-form-item>
-
+          <div class="block">
+            <el-pagination
+              :current-page=logdata.pageNum
+              :page-size=logdata.pageSize
+              :pager-count=7
+              layout="prev, pager, next"
+              :total=logdata.total
+              @current-change="getlogdata">
+            </el-pagination>
+          </div>
         </el-form>
         <el-table
-                :data="logdata.data"
+                :data="logdata.list"
                 v-loading="tableLoading"
                 border
                 size="mini"
@@ -64,19 +73,18 @@
             }
         },
         methods: {
-            getlogdata(){
+            getlogdata(pageNum){
                 this.tableLoading = true;
-                this.getRequest("/log/selectAll").then(resp=> {
+                this.getRequest("/log/selectAll?pageNum="+pageNum).then(resp=> {
                     this.tableLoading = false;
                     if (resp && resp.status == 200) {
-                        var data = resp.data;
-                        this.logdata = resp.data
+                        this.logdata = resp.data.data
                         }
                 })
             }
         },
         created: function(){
-            this.getlogdata()
+            this.getlogdata(1)
         },
         destroyed: function(){
 

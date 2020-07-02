@@ -2,13 +2,22 @@
     <div style="display: inline;padding-top: 22px;">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item>
-                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getuserdata">刷新
+                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getuserdata(1)">刷新
                     </el-button>
             </el-form-item>
-
+          <div class="block">
+            <el-pagination
+              :current-page=userdata.pageNum
+              :page-size=userdata.pageSize
+              :pager-count=7
+              layout="prev, pager, next"
+              :total=userdata.total
+              @current-change="getuserdata">
+            </el-pagination>
+          </div>
         </el-form>
         <el-table
-                :data="userdata.data"
+                :data="userdata.list"
                 v-loading="tableLoading"
                 border
                 size="mini"
@@ -31,12 +40,12 @@
 <!--                    width="200"-->
 <!--                    label="密码">-->
 <!--            </el-table-column>-->
-            <el-table-column
-                    prop="type"
-                    sortable
-                    width="100"
-                    label="用户类型">
-            </el-table-column>
+<!--            <el-table-column-->
+<!--                    prop="type"-->
+<!--                    sortable-->
+<!--                    width="100"-->
+<!--                    label="用户类型">-->
+<!--            </el-table-column>-->
             <el-table-column
                     prop="lastLoginTime"
                     sortable
@@ -119,18 +128,19 @@
         data: function() {
             return {
                 userdata:{
+                  pageNum:1
 
                 }
             }
         },
         methods: {
-            getuserdata(){
+            getuserdata(pageNum){
+              console.log(pageNum)
                 this.tableLoading = true;
-                this.getRequest("/user/selectAll").then(resp=> {
+                this.getRequest("/user/selectAll?pageNum="+pageNum).then(resp=> {
                     this.tableLoading = false;
                     if (resp && resp.status == 200) {
-                        var data = resp.data;
-                        this.userdata = resp.data
+                        this.userdata = resp.data.data
                         }
                 })
             },
@@ -144,7 +154,7 @@
             }
         },
         created: function(){
-            this.getuserdata()
+            this.getuserdata(1)
         },
         destroyed: function(){
 

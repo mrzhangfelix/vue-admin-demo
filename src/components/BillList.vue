@@ -2,13 +2,22 @@
     <div style="display: inline;padding-top: 22px;">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item>
-                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getbilldata">刷新
+                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getbilldata(1)">刷新
                     </el-button>
             </el-form-item>
-
+          <div class="block">
+            <el-pagination
+              :current-page=billdata.pageNum
+              :page-size=billdata.pageSize
+              :pager-count=7
+              layout="prev, pager, next"
+              :total=billdata.total
+              @current-change="getbilldata">
+            </el-pagination>
+          </div>
         </el-form>
         <el-table
-                :data="billdata.data"
+                :data="billdata.list"
                 v-loading="tableLoading"
                 border
                 size="mini"
@@ -59,19 +68,18 @@
             }
         },
         methods: {
-            getbilldata(){
+            getbilldata(pageNum){
                 this.tableLoading = true;
-                this.getRequest("/bill/selectAll").then(resp=> {
+                this.getRequest("/bill/selectAll?pageNum="+pageNum).then(resp=> {
                     this.tableLoading = false;
                     if (resp && resp.status == 200) {
-                        var data = resp.data;
-                        this.billdata = resp.data
+                        this.billdata = resp.data.data
                         }
                 })
             }
         },
         created: function(){
-            this.getbilldata()
+            this.getbilldata(1)
         },
         destroyed: function(){
 

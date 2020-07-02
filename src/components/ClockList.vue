@@ -2,13 +2,22 @@
     <div style="display: inline;padding-top: 22px;">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item>
-                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getclockdata">刷新
+                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getclockdata(1)">刷新
                     </el-button>
             </el-form-item>
-
+          <div class="block">
+            <el-pagination
+              :current-page=clockdata.pageNum
+              :page-size=clockdata.pageSize
+              :pager-count=7
+              layout="prev, pager, next"
+              :total=clockdata.total
+              @current-change="getclockdata">
+            </el-pagination>
+          </div>
         </el-form>
         <el-table
-                :data="clockdata.data"
+                :data="clockdata.list"
                 v-loading="tableLoading"
                 border
                 size="mini"
@@ -55,12 +64,12 @@
                     width="200"
                     label="打卡时间">
             </el-table-column>
-            <el-table-column
-                    prop="finish"
-                    sortable
-                    width="200"
-                    label="是否已结束">
-            </el-table-column>
+<!--            <el-table-column-->
+<!--                    prop="finish"-->
+<!--                    sortable-->
+<!--                    width="200"-->
+<!--                    label="是否已结束">-->
+<!--            </el-table-column>-->
             <el-table-column
                     prop="money"
                     sortable
@@ -95,19 +104,18 @@
             }
         },
         methods: {
-            getclockdata(){
+            getclockdata(pageNum){
                 this.tableLoading = true;
-                this.getRequest("/clock/selectAll").then(resp=> {
+                this.getRequest("/clock/selectAll?pageNum="+pageNum).then(resp=> {
                     this.tableLoading = false;
                     if (resp && resp.status == 200) {
-                        var data = resp.data;
-                        this.clockdata = resp.data
+                        this.clockdata = resp.data.data
                         }
                 })
             }
         },
         created: function(){
-            this.getclockdata()
+            this.getclockdata(1)
         },
         destroyed: function(){
 

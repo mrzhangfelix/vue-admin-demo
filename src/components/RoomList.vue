@@ -2,13 +2,22 @@
     <div style="display: inline;padding-top: 22px;">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item>
-                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getroomdata">刷新
+                    <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="getroomdata(1)">刷新
                     </el-button>
             </el-form-item>
-
+          <div class="block">
+            <el-pagination
+              :current-page=roomdata.pageNum
+              :page-size=roomdata.pageSize
+              :pager-count=7
+              layout="prev, pager, next"
+              :total=roomdata.total
+              @current-change="getroomdata">
+            </el-pagination>
+          </div>
         </el-form>
         <el-table
-                :data="roomdata.data"
+                :data="roomdata.list"
                 v-loading="tableLoading"
                 border
                 size="mini"
@@ -85,12 +94,12 @@
                     width="200"
                     label="创建时间">
             </el-table-column>
-            <el-table-column
-                    prop="finish"
-                    sortable
-                    width="200"
-                    label="是否结束">
-            </el-table-column>
+<!--            <el-table-column-->
+<!--                    prop="finish"-->
+<!--                    sortable-->
+<!--                    width="200"-->
+<!--                    label="是否结束">-->
+<!--            </el-table-column>-->
             <el-table-column
                     prop="showinfo"
                     sortable
@@ -141,13 +150,12 @@
             }
         },
         methods: {
-            getroomdata(){
+            getroomdata(pageNum){
                 this.tableLoading = true;
-                this.getRequest("/room/selectAll").then(resp=> {
+                this.getRequest("/room/selectAll?pageNum="+pageNum).then(resp=> {
                     this.tableLoading = false;
                     if (resp && resp.status == 200) {
-                        var data = resp.data;
-                        this.roomdata = resp.data
+                        this.roomdata = resp.data.data
                         }
                 })
             },
@@ -169,7 +177,7 @@
           }
         },
         created: function(){
-            this.getroomdata()
+            this.getroomdata(1)
         },
         destroyed: function(){
 
