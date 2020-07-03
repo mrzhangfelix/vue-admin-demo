@@ -8,6 +8,7 @@ import RoomList from '@/components/RoomList'
 import BillList from '@/components/BillList'
 import ClockList from '@/components/ClockList'
 import LogList from '@/components/LogList'
+import ApplyList from '@/components/ApplyList'
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +42,10 @@ export default new Router({
           path: '/loglist',
           name: '日志列表',
           component: LogList
+        },{
+          path: '/applylist',
+          name: '申请列表',
+          component: ApplyList
         }
       ]
     },{

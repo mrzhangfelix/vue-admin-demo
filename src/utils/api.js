@@ -3,6 +3,8 @@ import {Message} from 'element-ui'
 
 //全局拦截
 axios.interceptors.request.use(config => {
+    config.baseURL = 'http://49.232.206.221:8059'
+    // config.baseURL = '/'
     config.baseURL = '/api'
     config.withCredentials = true // 允许携带token ,这个是解决跨域产生的相关问题
     // config.timeout = 6000
@@ -27,7 +29,7 @@ axios.interceptors.response.use(
       return;
     }
     if (data.data.msg) {
-      Message.success({message: data.data.message});
+      Message.success({message: data.data.msg});
     }
     return data;
   },

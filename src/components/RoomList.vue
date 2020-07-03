@@ -89,6 +89,12 @@
                     label="是否推荐">
             </el-table-column>
             <el-table-column
+                    prop="overhead"
+                    sortable
+                    width="200"
+                    label="是否顶置">
+            </el-table-column>
+            <el-table-column
                     prop="creatTime"
                     sortable
                     width="200"
@@ -100,12 +106,7 @@
 <!--                    width="200"-->
 <!--                    label="是否结束">-->
 <!--            </el-table-column>-->
-            <el-table-column
-                    prop="showinfo"
-                    sortable
-                    width="200"
-                    label="是否推荐">
-            </el-table-column>
+
             <el-table-column
                     prop="showinfo"
                     sortable
@@ -127,10 +128,11 @@
           <el-table-column
             fixed="right"
             label="操作"
-            width="100">
+            width="200">
             <template slot-scope="scope">
-              <el-button @click="topping(scope.row.id)" type="text" size="small">推荐</el-button>
-              <el-button @click="recommend(scope.row.id)" type="text" size="small">顶置</el-button>
+              <el-button @click="topping(scope.row.id,scope.row.overhead)" type="text" size="small">{{scope.row.overhead==1?"取消顶置":"顶置"}}</el-button>
+              <el-button @click="recommend(scope.row.id,scope.row.recommend)" type="text" size="small">{{scope.row.recommend==1?"取消推荐":"推荐"}}</el-button>
+              <el-button @click="finish(scope.row.id)" type="text" size="small">结束</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -159,19 +161,30 @@
                         }
                 })
             },
-          topping(id){
+          topping(id,status){
             console.log(id)
-            this.getRequest("/room/topping?id="+id).then(resp=> {
+            this.getRequest("/room/topping?id="+id+"&status="+status).then(resp=> {
               if (resp && resp.status == 200) {
                 Message.success({message: "成功"});
               }
+              this.getroomdata( this.roomdata.pageNum)
             })
           },
-          recommend(id){
+          recommend(id,status){
             console.log(id)
-            this.getRequest("/room/recommend?id="+id).then(resp=> {
+            this.getRequest("/room/recommend?id="+id+"&status="+status).then(resp=> {
               if (resp && resp.status == 200) {
                 Message.success({message: "成功"});
+                this.getroomdata( this.roomdata.pageNum)
+              }
+            })
+          },
+          finish(id){
+            console.log(id)
+            this.getRequest("/room/finish?id="+id).then(resp=> {
+              if (resp && resp.status == 200) {
+                Message.success({message: "成功"});
+                this.getroomdata( this.roomdata.pageNum)
               }
             })
           }

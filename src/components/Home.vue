@@ -33,6 +33,10 @@
                   <i class="el-icon-menu"></i>
                   <span slot="title">Log列表</span>
                 </el-menu-item>
+              <el-menu-item index="7" @click="goApplyList">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">Apply列表</span>
+                </el-menu-item>
 
             </el-menu>
           </div>
@@ -77,6 +81,9 @@
       },
       goLogList(){
         this.$router.push({path: '/loglist'});
+      },
+      goApplyList(){
+        this.$router.push({path: '/applylist'});
       }
     }
   }
