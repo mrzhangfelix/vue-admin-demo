@@ -100,18 +100,17 @@
                     width="120"
                     label="复活卡数量">
             </el-table-column>
-            <el-table-column
-                    prop="joinRoom"
-                    sortable
-                    width="200"
-                    label="加入的房间">
-            </el-table-column>
+<!--            <el-table-column-->
+<!--                    prop="joinRoom"-->
+<!--                    sortable-->
+<!--                    width="200"-->
+<!--                    label="加入的房间">-->
+<!--            </el-table-column>-->
           <el-table-column
             fixed="right"
             label="操作"
             width="100">
             <template slot-scope="scope">
-              <el-button type="text" size="small">查看</el-button>
               <el-button @click="resetPassWord(scope.row.id)" type="text" size="small">重置密码</el-button>
             </template>
           </el-table-column>

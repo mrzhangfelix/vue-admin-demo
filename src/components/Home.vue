@@ -27,15 +27,15 @@
                 </el-menu-item>
               <el-menu-item index="5" @click="goClockList">
                   <i class="el-icon-menu"></i>
-                  <span slot="title">Clock列表</span>
+                  <span slot="title">打卡管理</span>
                 </el-menu-item>
               <el-menu-item index="6" @click="goLogList">
                   <i class="el-icon-menu"></i>
-                  <span slot="title">Log列表</span>
+                  <span slot="title">日志管理</span>
                 </el-menu-item>
               <el-menu-item index="7" @click="goApplyList">
                   <i class="el-icon-menu"></i>
-                  <span slot="title">Apply列表</span>
+                  <span slot="title">体现申请</span>
                 </el-menu-item>
 
             </el-menu>

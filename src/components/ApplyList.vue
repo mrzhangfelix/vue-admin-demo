@@ -29,7 +29,7 @@
             label="id">
           </el-table-column>
           <el-table-column
-            prop="userId"
+            prop="userid"
             sortable
             width="200"
             label="用户ID">
@@ -58,12 +58,22 @@
             width="200"
             label="是否已经处理">
           </el-table-column>
+          <el-table-column
+            fixed="right"
+            label="操作"
+            width="200">
+            <template slot-scope="scope">
+              <el-button @click="finish(scope.row.id)" type="text" size="small">处理</el-button>
+            </template>
+          </el-table-column>
 
         </el-table>
     </div>
 </template>
 
     <script>
+    import {Message} from "element-ui";
+
     const path = require('path')
     export default {
         data: function() {
@@ -82,7 +92,15 @@
                         this.applydata = resp.data.data
                         }
                 })
-            }
+            },
+          finish(id){
+            console.log(id)
+            this.getRequest("/apply/finish?id="+id).then(resp=> {
+              if (resp && resp.status == 200) {
+                this.getapplydata( this.applydata.pageNum)
+              }
+            })
+          }
         },
         created: function(){
             this.getapplydata(1)

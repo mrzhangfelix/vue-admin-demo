@@ -50,13 +50,13 @@
                     prop="text"
                     sortable
                     width="200"
-                    label="text">
+                    label="日志内容">
             </el-table-column>
             <el-table-column
                     prop="time"
                     sortable
                     width="200"
-                    label="time">
+                    label="日志时间">
             </el-table-column>
         </el-table>
     </div>
